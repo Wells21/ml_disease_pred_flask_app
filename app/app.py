@@ -1,4 +1,3 @@
-from logging import raiseExceptions
 from flask import Flask, render_template, request
 from joblib import load
 import numpy as np
@@ -6,7 +5,7 @@ import numpy as np
 
 app = Flask(__name__)
 
-model = load('disease_model.joblib')
+model = load('app/disease_model.joblib')
 
 
 @app.route("/")
