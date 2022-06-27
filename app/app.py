@@ -5,7 +5,7 @@ import numpy as np
 
 app = Flask(__name__)
 
-model = load('app/disease_model.joblib')
+model = load('app/illness_model.joblib')
 
 
 @app.route("/")
