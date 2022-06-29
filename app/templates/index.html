@@ -19,24 +19,24 @@
 
      <!-- Main Input For Receiving Query to our ML -->
     <form action="{{ url_for('predict')}}"method="post">
-		<input type="text" name="weight_loss" placeholder="weight_loss" required="required" />
-		<input type="text" name="mild_fever" placeholder="mild_fever" required="required" />
-		<input type="text" name="yellowing_of_eyes" placeholder="yellowing_of_eyes" required="required" />
-		<input type="text" name="unsteadiness" placeholder="unsteadiness" required="required" />
-		<input type="text" name="irritation_in_anus" placeholder="irritation_in_anus" required="required" />
-		<input type="text" name="enlarged_thyroid" placeholder="enlarged_thyroid" required="required" />
-		<input type="text" name="knee_pain" placeholder="knee_pain" required="required" />
-		<input type="text" name="movement_stiffness" placeholder="movement_stiffness" required="required" />
-		<input type="text" name="internal_itching" placeholder="internal_itching" required="required" />
-		<input type="text" name="muscle_pain" placeholder="muscle_pain" required="required" />
-		<input type="text" name="altered_sensorium" placeholder="altered_sensorium" required="required" />
-		<input type="text" name="abnormal_menstruation" placeholder="abnormal_menstruation" required="required" />
-		<input type="text" name="increased_appetite" placeholder="increased_appetite" required="required" />
-		<input type="text" name="rusty_sputum" placeholder="rusty_sputum" required="required" />
-		<input type="text" name="visual_disturbances" placeholder="visual_disturbances" required="required" />
-		<input type="text" name="receiving_unsterile_injections" placeholder="receiving_unsterile_injections" required="required" />
-		<input type="text" name="coma" placeholder="coma" required="required" />
-		<input type="text" name="palpitations" placeholder="palpitations" required="required" />
+		<input type="text" name="weight_loss" placeholder="weight_loss" required="required" maxlength="1" />
+		<input type="text" name="mild_fever" placeholder="mild_fever" required="required" maxlength="1" />
+		<input type="text" name="yellowing_of_eyes" placeholder="yellowing_of_eyes" required="required" maxlength="1" />
+		<input type="text" name="unsteadiness" placeholder="unsteadiness" required="required" maxlength="1" />
+		<input type="text" name="irritation_in_anus" placeholder="irritation_in_anus" required="required" maxlength="1" />
+		<input type="text" name="enlarged_thyroid" placeholder="enlarged_thyroid" required="required" maxlength="1" />
+		<input type="text" name="knee_pain" placeholder="knee_pain" required="required" maxlength="1" />
+		<input type="text" name="movement_stiffness" placeholder="movement_stiffness" required="required" maxlength="1" />
+		<input type="text" name="internal_itching" placeholder="internal_itching" required="required" maxlength="1" />
+		<input type="text" name="muscle_pain" placeholder="muscle_pain" required="required" maxlength="1" />
+		<input type="text" name="altered_sensorium" placeholder="altered_sensorium" required="required" maxlength="1" />
+		<input type="text" name="abnormal_menstruation" placeholder="abnormal_menstruation" required="required" maxlength="1" />
+		<input type="text" name="increased_appetite" placeholder="increased_appetite" required="required" maxlength="1" />
+		<input type="text" name="rusty_sputum" placeholder="rusty_sputum" required="required" maxlength="1" />
+		<input type="text" name="visual_disturbances" placeholder="visual_disturbances" required="required" maxlength="1" />
+		<input type="text" name="receiving_unsterile_injections" placeholder="receiving_unsterile_injections" required="required" maxlength="1" />
+		<input type="text" name="coma" placeholder="coma" required="required" maxlength="1" />
+		<input type="text" name="palpitations" placeholder="palpitations" required="required" maxlength="1" />
 
         <button type="submit" class="btn btn-primary btn-block btn-large">Predict</button>
     </form>
