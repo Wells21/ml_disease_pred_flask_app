@@ -18,7 +18,7 @@ def predict():
         inputs = [np.array(int_inputs)]
         preds = model.predict(inputs)
 
-        return render_template('index.html', prediction_text = "The Disease is: {}".format(preds))
+        return render_template('index.html', prediction_text = "The Likely Disease is: {}".format(preds))
 
 
 
