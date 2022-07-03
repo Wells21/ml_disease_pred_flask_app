@@ -5,7 +5,7 @@ import numpy as np
 
 app = Flask(__name__)
 
-model = load('app/illness_model.joblib')
+model = load('app/disease_pred.joblib')
 
 
 @app.route("/")
@@ -17,7 +17,6 @@ def predict():
         int_inputs = [int(x) for x in request.form.values()]
         inputs = [np.array(int_inputs)]
         preds = model.predict(inputs)
-
 
         return render_template('index.html', prediction_text = "The Disease is: {}".format(preds))
 

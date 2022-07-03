@@ -1,51 +1,717 @@
 <!DOCTYPE html>
-<html >
-<!--From https://codepen.io/frytyler/pen/EGdtg-->
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>ML API</title>
-  <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
-<link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
-<link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
-<link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
-  
+    <link rel="stylesheet" href="wells.css"/>
+    <meta charset="UTF-8">
+    <title>disease prediction</title>
 </head>
-
+    <header>
+      <div class="container">
+        <div id="branding">
+          <h1><span class="highlight">DISEASE</span> PREDICTION </h1>
+        </div>
+    </header>
 <body>
- <div class="login">
-	<h1>Disease Prediction</h1>
+                <h2>click the box for a likely symptoms</h2>
+                
+  <div>
+  <form action="{{ url_for('predict')}}" method="post">
+    <label class="container">itching
+    <input type="checkbox" name="itching" value="1">
+    <input type="hidden" name="itching" value="0">
+    </label>
 
-    <label>Fill out this values where True = 1, and False = 0. This means if you have any symptom mentioned put in the value 1, but if u dont have the symptom put in the value 0.</label>
+    <label class="container">skin_rash
+    <input type="checkbox" name="skin_rash" value="1">
+    <input type="hidden" name="skin_rash" value="0">
+    </label>
+    
+    <label class="container">nodal_skin_eruptions
+    <input type="checkbox" name="nodal_skin_eruptions" value="1">
+    <input type="hidden" name="nodal_skin_eruptions" value="0">
+    </label>
+    
+    <label class="container">continuous_sneezing
+    <input type="checkbox" name="continuous_sneezing" value="1">
+    <input type="hidden" name="continuous_sneezing" value="0">
+    </label>
+    
+    <label class="container">shivering
+    <input type="checkbox" name="shivering" value="1">
+    <input type="hidden" name="shivering" value="0">
+    </label>
+    
+    <label class="container">chills
+    <input type="checkbox" name="chills" value="1">
+    <input type="hidden" name="chills" value="0">
+    </label>
+    <br>
+    
+    <label class="container">joint_pain
+    <input type="checkbox" name="joint_pain" value="1">
+    <input type="hidden" name="joint_pain" value="0">
+    </label>
+    
+    <label class="container">stomach_pain
+    <input type="checkbox" name="stomach_pain" value="1">
+    <input type="hidden" name="stomach_pain" value="0">
+    </label>
+    
+    <label class="container">acidity
+    <input type="checkbox" name="acidity" value="1">
+    <input type="hidden" name="acidity" value="0">
+    </label>
+    
+    <label class="container">ulcers_on_tongue
+    <input type="checkbox" name="ulcers_on_tongue" value="1">
+    <input type="hidden" name="ulcers_on_tongue" value="0">
+    </label>
+    
+    <label class="container">muscle_wasting
+    <input type="checkbox" name="muscle_wasting" value="1">
+    <input type="hidden" name="muscle_wasting" value="0">
+    </label>
+    
+    <label class="container">vomiting
+    <input type="checkbox" name="vomiting" value="1">
+    <input type="hidden" name="vomiting" value="0">
+    </label>
+    <br>
+    
+    <label class="container">burning_micturition
+    <input type="checkbox" name="burning_micturition" value="1">
+    <input type="hidden" name="burning_micturition" value="0">
+    </label>
+    
+    <label class="container">spotting_urination
+    <input type="checkbox" name="spotting_urination" value="1">
+    <input type="hidden" name="spotting_urination" value="0">
+    </label>
+    
+    <label class="container">fatigue
+    <input type="checkbox" name="fatigue" value="1">
+    <input type="hidden" name="fatigue" value="0">
+    </label>
+    
+    <label class="container">weight_gain
+    <input type="checkbox" name="weight_gain" value="1">
+    <input type="hidden" name="weight_gain" value="0">
+    </label>
+    
+    <label class="container">anxiety
+    <input type="checkbox" name="anxiety" value="1">
+    <input type="hidden" name="anxiety" value="0">
+    </label>
+    
+    <label class="container">cold_hands_and_feets
+    <input type="checkbox" name="cold_hands_and_feets" value="1">
+    <input type="hidden" name="cold_hands_and_feets" value="0">
+    </label>
+    <br>
 
-     <!-- Main Input For Receiving Query to our ML -->
-    <form action="{{ url_for('predict')}}"method="post">
-		<input type="text" name="weight_loss" placeholder="weight_loss" required="required" maxlength="1" />
-		<input type="text" name="mild_fever" placeholder="mild_fever" required="required" maxlength="1" />
-		<input type="text" name="yellowing_of_eyes" placeholder="yellowing_of_eyes" required="required" maxlength="1" />
-		<input type="text" name="unsteadiness" placeholder="unsteadiness" required="required" maxlength="1" />
-		<input type="text" name="irritation_in_anus" placeholder="irritation_in_anus" required="required" maxlength="1" />
-		<input type="text" name="enlarged_thyroid" placeholder="enlarged_thyroid" required="required" maxlength="1" />
-		<input type="text" name="knee_pain" placeholder="knee_pain" required="required" maxlength="1" />
-		<input type="text" name="movement_stiffness" placeholder="movement_stiffness" required="required" maxlength="1" />
-		<input type="text" name="internal_itching" placeholder="internal_itching" required="required" maxlength="1" />
-		<input type="text" name="muscle_pain" placeholder="muscle_pain" required="required" maxlength="1" />
-		<input type="text" name="altered_sensorium" placeholder="altered_sensorium" required="required" maxlength="1" />
-		<input type="text" name="abnormal_menstruation" placeholder="abnormal_menstruation" required="required" maxlength="1" />
-		<input type="text" name="increased_appetite" placeholder="increased_appetite" required="required" maxlength="1" />
-		<input type="text" name="rusty_sputum" placeholder="rusty_sputum" required="required" maxlength="1" />
-		<input type="text" name="visual_disturbances" placeholder="visual_disturbances" required="required" maxlength="1" />
-		<input type="text" name="receiving_unsterile_injections" placeholder="receiving_unsterile_injections" required="required" maxlength="1" />
-		<input type="text" name="coma" placeholder="coma" required="required" maxlength="1" />
-		<input type="text" name="palpitations" placeholder="palpitations" required="required" maxlength="1" />
+    <label class="container">mood_swings
+    <input type="checkbox" name="mood_swings" value="1">
+    <input type="hidden" name="mood_swings" value="0">
+    </label>
+  
+    <label class="container">weight_loss
+    <input type="checkbox" name="weight_loss" value="1">
+    <input type="hidden" name="weight_loss" value="0">
+    </label>
+      
+    <label class="container">restlessness
+    <input type="checkbox" name="restlessness" value="1">
+    <input type="hidden" name="restlessness" value="0">
+    </label>
+      
+    <label class="container">lethargy
+    <input type="checkbox" name="lethargy" value="1">
+    <input type="hidden" name="lethargy" value="0">
+    </label>
+      
+    <label class="container">patches_in_throat
+    <input type="checkbox" name="patches_in_throat" value="1">
+    <input type="hidden" name="patches_in_throat" value="0">
+    </label>
+      
+    <label class="container">irregular_sugar_level
+    <input type="checkbox" name="irregular_sugar_level" value="1">
+    <input type="hidden" name="irregular_sugar_level" value="0">
+    </label>
+    <br>
+      
+    <label class="container">cough
+    <input type="checkbox" name="cough" value="1">
+    <input type="hidden" name="cough" value="0">
+    </label>
+      
+    <label class="container">high_fever
+    <input type="checkbox" name="high_fever" value="1">
+    <input type="hidden" name="high_fever" value="0">
+    </label>
+    
+    <label class="container">sunken_eyes
+    <input type="checkbox" name="sunken_eyes" value="1">
+    <input type="hidden" name="sunken_eyes" value="0">
+    </label>
+      
+    <label class="container">breathlessness
+    <input type="checkbox" name="breathlessness" value="1">
+    <input type="hidden" name="breathlessness" value="0">
+    </label>
+    
+    <label class="container">sweating
+    <input type="checkbox" name="sweating" value="1">
+    <input type="hidden" name="sweating" value="0">
+    </label>
+    
+    <label class="container">dehydration
+    <input type="checkbox" name="dehydration" value="1">
+    <input type="hidden" name="dehydration" value="0">
+    </label>
+    <br>
+    
+    <label class="container">indigestion
+    <input type="checkbox" name="indigestion" value="1">
+    <input type="hidden" name="indigestion" value="0">
+    </label>
+      
+    <label class="container">headache
+    <input type="checkbox" name="headache" value="1">
+    <input type="hidden" name="headache" value="0">
+    </label>
+      
+    <label class="container">yellowish_skin
+    <input type="checkbox" name="yellowish_skin" value="1">
+    <input type="hidden" name="yellowish_skin" value="0">
+    </label>
+      
+    <label class="container">dark_urine
+    <input type="checkbox" name="dark_urine" value="1">
+    <input type="hidden" name="dark_urine" value="0">
+    </label>
+      
+    <label class="container">nausea
+    <input type="checkbox" name="nausea" value="1">
+    <input type="hidden" name="nausea" value="0">
+    </label>
+      
+    <label class="container">loss_of_appetite
+    <input type="checkbox" name="loss_of_appetite" value="1">
+    <input type="hidden" name="loss_of_appetite" value="0">
+    </label>
+    <br>
 
-        <button type="submit" class="btn btn-primary btn-block btn-large">Predict</button>
-    </form>
+    <label class="container">pain_behind_the_eyes
+    <input type="checkbox" name="pain_behind_the_eyes" value="1">
+    <input type="hidden" name="pain_behind_the_eyes" value="0">
+    </label>
+  
+    <label class="container">back_pain
+    <input type="checkbox" name="back_pain" value="1">
+    <input type="hidden" name="back_pain" value="0">
+    </label>
+      
+    <label class="container">constipation
+    <input type="checkbox" name="constipation" value="1">
+    <input type="hidden" name="constipation" value="0">
+    </label>
+      
+    <label class="container">abdominal_pain
+    <input type="checkbox" name="abdominal_pain" value="1">
+    <input type="hidden" name="abdominal_pain" value="0">
+    </label>
+    
+    <label class="container">diarrhoea
+    <input type="checkbox" name="diarrhoea" value="1">
+    <input type="hidden" name="diarrhoea" value="0">
+    </label>
+      
+    <label class="container">mild_fever
+    <input type="checkbox" name="mild_fever" value="1">
+    <input type="hidden" name="mild_fever" value="0">
+    </label>
+    <br>
+      
+    <label class="container">yellow_urine
+    <input type="checkbox" name="yellow_urine" value="1">
+    <input type="hidden" name="yellow_urine" value="0">
+    </label>
+    
+    <label class="container">yellowing_of_eyes
+    <input type="checkbox" name="yellowing_of_eyes" value="1">
+    <input type="hidden" name="yellowing_of_eyes" value="0">
+    </label>
+    
+    <label class="container">acute_liver_failure
+    <input type="checkbox" name="acute_liver_failure" value="1">
+    <input type="hidden" name="acute_liver_failure" value="0">
+    </label>
+    
+    <label class="container">fluid_overload.1
+    <input type="checkbox" name="fluid_overload.1" value="1">
+    <input type="hidden" name="fluid_overload.1" value="0">
+    </label>
+    
+    <label class="container">swelling_of_stomach
+    <input type="checkbox" name="swelling_of_stomach" value="1">
+    <input type="hidden" name="swelling_of_stomach" value="0">
+    </label>
+    
+    <label class="container">swelled_lymph_nodes
+    <input type="checkbox" name="swelled_lymph_nodes" value="1">
+    <input type="hidden" name="swelled_lymph_nodes" value="0">
+    </label>
+    <br>
+    
+    <label class="container">malaise
+    <input type="checkbox" name="malaise" value="1">
+    <input type="hidden" name="malaise" value="0">
+    </label>
+    
+    <label class="container">blurred_and_distorted_vision
+    <input type="checkbox" name="blurred_and_distorted_vision" value="1">
+    <input type="hidden" name="blurred_and_distorted_vision" value="0">
+    </label>
+    
+    <label class="container">phlegm
+    <input type="checkbox" name="phlegm" value="1">
+    <input type="hidden" name="phlegm" value="0">
+    </label>
+    
+    <label class="container">throat_irritation
+    <input type="checkbox" name="throat_irritation" value="1">
+    <input type="hidden" name="throat_irritation" value="0">
+    </label>
+    
+    <label class="container">redness_of_eyes
+    <input type="checkbox" name="redness_of_eyes" value="1">
+    <input type="hidden" name="redness_of_eyes" value="0">
+    </label>
+    
+    <label class="container">sinus_pressure
+    <input type="checkbox" name="sinus_pressure" value="1">
+    <input type="hidden" name="sinus_pressure" value="0">
+    </label>
+    <br>
 
-   <br>
-   <br>
-   {{ prediction_text }}
+    <label class="container">runny_nose
+    <input type="checkbox" name="runny_nose" value="1">
+    <input type="hidden" name="runny_nose" value="0">
+    </label>
+  
+    <label class="container">congestion
+    <input type="checkbox" name="congestion" value="1">
+    <input type="hidden" name="congestion" value="0">
+    </label>
+        
+    <label class="container">chest_pain
+    <input type="checkbox" name="chest_pain" value="1">
+    <input type="hidden" name="chest_pain" value="0">
+    </label>
+      
+    <label class="container">weakness_in_limbs
+    <input type="checkbox" name="weakness_in_limbs" value="1">
+    <input type="hidden" name="weakness_in_limbs" value="0">
+    </label>
+      
+    <label class="container">fast_heart_rate
+    <input type="checkbox" name="fast_heart_rate" value="1">
+    <input type="hidden" name="fast_heart_rate" value="0">
+    </label>
+      
+    <label class="container">pain_during_bowel_movements
+    <input type="checkbox" name="pain_during_bowel_movements" value="1">
+    <input type="hidden" name="pain_during_bowel_movements" value="0">
+    </label>
+    <br>
+      
+    <label class="container">pain_in_anal_region
+    <input type="checkbox" name="pain_in_anal_region" value="1">
+    <input type="hidden" name="pain_in_anal_region" value="0">
+    </label>
+      
+    <label class="container">bloody_stool
+    <input type="checkbox" name="bloody_stool" value="1">
+    <input type="hidden" name="bloody_stool" value="0">
+    </label>
+    
+    <label class="container">irritation_in_anus
+    <input type="checkbox" name="irritation_in_anus" value="1">
+    <input type="hidden" name="irritation_in_anus" value="0">
+    </label>
+      
+    <label class="container">neck_pain
+    <input type="checkbox" name="neck_pain" value="1">
+    <input type="hidden" name="neck_pain" value="0">
+    </label>
+    
+    <label class="container">dizziness
+    <input type="checkbox" name="dizziness" value="1">
+    <input type="hidden" name="dizziness" value="0">
+    </label>
+    
+    <label class="container">cramps
+    <input type="checkbox" name="cramps" value="1">
+    <input type="hidden" name="cramps" value="0">
+    </label>
+    <br>
+    
+    <label class="container">bruising
+    <input type="checkbox" name="bruising" value="1">
+    <input type="hidden" name="bruising" value="0">
+    </label>
+      
+    <label class="container">obesity
+    <input type="checkbox" name="obesity" value="1">
+    <input type="hidden" name="obesity" value="0">
+    </label>
+      
+    <label class="container">swollen_legs
+    <input type="checkbox" name="swollen_legs" value="1">
+    <input type="hidden" name="swollen_legs" value="0">
+    </label>
+      
+    <label class="container">swollen_blood_vessels
+    <input type="checkbox" name="swollen_blood_vessels" value="1">
+    <input type="hidden" name="swollen_blood_vessels" value="0">
+    </label>
+      
+    <label class="container">puffy_face_and_eyes
+    <input type="checkbox" name="puffy_face_and_eyes" value="1">
+    <input type="hidden" name="puffy_face_and_eyes" value="0">
+    </label>
+      
+    <label class="container">enlarged_thyroid
+    <input type="checkbox" name="enlarged_thyroid" value="1">
+    <input type="hidden" name="enlarged_thyroid" value="0">
+    </label>
+    <br>
 
- </div>
+    <label class="container">brittle_nails
+    <input type="checkbox" name="brittle_nails" value="1">
+    <input type="hidden" name="brittle_nails" value="0">
+    </label>
+
+    <label class="container">swollen_extremeties
+    <input type="checkbox" name="swollen_extremeties" value="1">
+    <input type="hidden" name="swollen_extremeties" value="0">
+    </label>
+    
+    <label class="container">excessive_hunger
+    <input type="checkbox" name="excessive_hunger" value="1">
+    <input type="hidden" name="excessive_hunger" value="0">
+    </label>
+    
+    <label class="container">extra_marital_contacts
+    <input type="checkbox" name="extra_marital_contacts" value="1">
+    <input type="hidden" name="extra_marital_contacts" value="0">
+    </label>
+    
+    <label class="container">drying_and_tingling_lips
+    <input type="checkbox" name="drying_and_tingling_lips" value="1">
+    <input type="hidden" name="drying_and_tingling_lips" value="0">
+    </label>
+    
+    <label class="container">slurred_speech
+    <input type="checkbox" name="slurred_speech" value="1">
+    <input type="hidden" name="slurred_speech" value="0">
+    </label>
+    <br>
+    
+    <label class="container">knee pain
+    <input type="checkbox" name="knee pain" value="1">
+    <input type="hidden" name="knee pain" value="0">
+    </label>
+    
+    <label class="container">hip_joint_pain
+    <input type="checkbox" name="hip_joint_pain" value="1">
+    <input type="hidden" name="hip_joint_pain" value="0">
+    </label>
+    
+    <label class="container">muscle_weakness
+    <input type="checkbox" name="muscle_weakness" value="1">
+    <input type="hidden" name="muscle_weakness" value="0">
+    </label>
+    
+    <label class="container">stiff_neck
+    <input type="checkbox" name="stiff_neck" value="1">
+    <input type="hidden" name="stiff_neck" value="0">
+    </label>
+    
+    <label class="container">swelling_joints
+    <input type="checkbox" name="swelling_joints" value="1">
+    <input type="hidden" name="swelling_joints" value="0">
+    </label>
+    
+    <label class="container">movement_stiffness
+    <input type="checkbox" name="movement_stiffness" value="1">
+    <input type="hidden" name="movement_stiffness" value="0">
+    </label>
+    <br>
+    
+    <label class="container">spinning_movements
+    <input type="checkbox" name="spinning_movements" value="1">
+    <input type="hidden" name="spinning_movements" value="0">
+    </label>
+    
+    <label class="container">loss_of_balance
+    <input type="checkbox" name="loss_of_balance" value="1">
+    <input type="hidden" name="loss_of_balance" value="0">
+    </label>
+    
+    <label class="container">unsteadiness
+    <input type="checkbox" name="unsteadiness" value="1">
+    <input type="hidden" name="unsteadiness" value="0">
+    </label>
+    
+    <label class="container">weakness_of_one_body_side
+    <input type="checkbox" name="weakness_of_one_body_side" value="1">
+    <input type="hidden" name="weakness_of_one_body_side" value="0">
+    </label>
+    
+    <label class="container">loss_of_smell
+    <input type="checkbox" name="loss_of_smell" value="1">
+    <input type="hidden" name="loss_of_smell" value="0">
+    </label>
+    
+    <label class="container">bladder_discomfort
+    <input type="checkbox" name="bladder_discomfort" value="1">
+    <input type="hidden" name="bladder_discomfort" value="0">
+    </label>
+    <br>
+
+    <label class="container">foul_smell_of_urine
+    <input type="checkbox" name="foul_smell_of_urine" value="1">
+    <input type="hidden" name="foul_smell_of_urine" value="0">
+    </label>
+  
+    <label class="container">continuous_feel_of_urine
+    <input type="checkbox" name="continuous_feel_of_urine" value="1">
+    <input type="hidden" name="continuous_feel_of_urine" value="0">
+    </label>
+      
+    <label class="container">passage_of_gases
+    <input type="checkbox" name="passage_of_gases" value="1">
+    <input type="hidden" name="passage_of_gases" value="0">
+    </label>
+      
+    <label class="container">internal_itching
+    <input type="checkbox" name="internal_itching" value="1">
+    <input type="hidden" name="internal_itching" value="0">
+    </label>
+      
+    <label class="container">toxic_look_(typhos)
+    <input type="checkbox" name="toxic_look_(typhos)" value="1">
+    <input type="hidden" name="toxic_look_(typhos)" value="0">
+    </label>
+      
+    <label class="container">depression
+    <input type="checkbox" name="depression" value="1">
+    <input type="hidden" name="depression" value="0">
+    </label>
+    <br>
+      
+    <label class="container">irritability
+    <input type="checkbox" name="irritability" value="1">
+    <input type="hidden" name="irritability" value="0">
+    </label>
+      
+    <label class="container">muscle_pain
+    <input type="checkbox" name="muscle_pain" value="1">
+    <input type="hidden" name="muscle_pain" value="0">
+    </label>
+    
+    <label class="container">altered_sensorium
+    <input type="checkbox" name="altered_sensorium" value="1">
+    <input type="hidden" name="altered_sensorium" value="0">
+    </label>
+      
+    <label class="container">red_spots_over_body
+    <input type="checkbox" name="red_spots_over_body" value="1">
+    <input type="hidden" name="red_spots_over_body" value="0">
+    </label>
+    
+    <label class="container">belly_pain
+    <input type="checkbox" name="belly_pain" value="1">
+    <input type="hidden" name="belly_pain" value="0">
+    </label>
+    
+    <label class="container">abnormal menstration
+    <input type="checkbox" name="abnormal menstration" value="1">
+    <input type="hidden" name="abnormal menstration" value="0">
+    </label>
+    <br>
+    
+    <label class="container">dischromic_patches
+    <input type="checkbox" name="dischromic_patches" value="1">
+    <input type="hidden" name="dischromic_patches" value="0">
+    </label>
+      
+    <label class="container">watering_from_eyes
+    <input type="checkbox" name="watering_from_eyes" value="1">
+    <input type="hidden" name="watering_from_eyes" value="0">
+    </label>
+      
+    <label class="container">increased_appetite
+    <input type="checkbox" name="increased_appetite" value="1">
+    <input type="hidden" name="increased_appetite" value="0">
+    </label>
+      
+    <label class="container">polyuria
+    <input type="checkbox" name="polyuria" value="1">
+    <input type="hidden" name="polyuria" value="0">
+    </label>
+      
+    <label class="container">family_history
+    <input type="checkbox" name="family_history" value="1">
+    <input type="hidden" name="family_history" value="0">
+    </label>
+      
+    <label class="container">mucoid_sputum
+    <input type="checkbox" name="mucoid_sputum" value="1">
+    <input type="hidden" name="mucoid_sputum" value="0">
+    </label>
+    <br>
+
+    <label class="container">rusty_sputum
+    <input type="checkbox" name="rusty_sputum" value="1">
+    <input type="hidden" name="rusty_sputum" value="0">
+    </label>
+
+    <label class="container">lack_of_concentration
+    <input type="checkbox" name="lack_of_concentration" value="1">
+    <input type="hidden" name="lack_of_concentration" value="0">
+    </label>
+    
+    <label class="container">visual_disturbances
+    <input type="checkbox" name="visual_disturbances" value="1">
+    <input type="hidden" name="visual_disturbances" value="0">
+    </label>
+    
+    <label class="container">receiving_blood_transfusion
+    <input type="checkbox" name="receiving_blood_transfusion" value="1">
+    <input type="hidden" name="receiving_blood_transfusion" value="0">
+    </label>
+    
+    <label class="container">receiving_unsterile_injections
+    <input type="checkbox" name="receiving_unsterile_injections" value="1">
+    <input type="hidden" name="receiving_unsterile_injections" value="0">
+    </label>
+    
+    <label class="container">coma
+    <input type="checkbox" name="coma" value="1">
+    <input type="hidden" name="coma" value="0">
+    </label>
+    <br>
+    
+    <label class="container">stomach_bleeding
+    <input type="checkbox" name="stomach_bleeding" value="1">
+    <input type="hidden" name="stomach_bleeding" value="0">
+    </label>
+    
+    <label class="container">distention_of_abdomen
+    <input type="checkbox" name="distention_of_abdomen" value="1">
+    <input type="hidden" name="distention_of_abdomen" value="0">
+    </label>
+    
+    <label class="container">history_of_alcohol_consumption
+    <input type="checkbox" name="history_of_alcohol_consumption" value="1">
+    <input type="hidden" name="history_of_alcohol_consumption" value="0">
+    </label>
+    
+    <label class="container">fluid_overload
+    <input type="checkbox" name="fluid_overload" value="1">
+    <input type="hidden" name="fluid_overload" value="0">
+    </label>
+    
+    <label class="container">blood_in_sputum
+    <input type="checkbox" name="blood_in_sputum" value="1">
+    <input type="hidden" name="blood_in_sputum" value="0">
+    </label>
+    
+    <label class="container">prominent_veins_on_calf
+    <input type="checkbox" name="prominent_veins_on_calf" value="1">
+    <input type="hidden" name="prominent_veins_on_calf" value="0">
+    </label>
+    <br>
+    
+    <label class="container">palpitations
+    <input type="checkbox" name="palpitations" value="1">
+    <input type="hidden" name="palpitations" value="0">
+    </label>
+    
+    <label class="container">painful_walking
+    <input type="checkbox" name="painful_walking" value="1">
+    <input type="hidden" name="painful_walking" value="0">
+    </label>
+    
+    <label class="container">pus_filled_pimples
+    <input type="checkbox" name="pus_filled_pimples" value="1">
+    <input type="hidden" name="pus_filled_pimples" value="0">
+    </label>
+    
+    <label class="container">blackheads
+    <input type="checkbox" name="blackheads" value="1">
+    <input type="hidden" name="blackheads" value="0">
+    </label>
+    
+    <label class="container">scurring
+    <input type="checkbox" name="scurring" value="1">
+    <input type="hidden" name="scurring" value="0">
+    </label>
+    
+    <label class="container">skin_peeling
+    <input type="checkbox" name="skin_peeling" value="1">
+    <input type="hidden" name="skin_peeling" value="0">
+    </label>
+    <br>
+
+    <label class="container">silver_like_dusting
+    <input type="checkbox" name="silver_like_dusting" value="1">
+    <input type="hidden" name="silver_like_dusting" value="0">
+    </label>
+  
+    <label class="container">small_dents_in_nails
+    <input type="checkbox" name="small_dents_in_nails" value="1">
+    <input type="hidden" name="small_dents_in_nails" value="0">
+    </label>
+      
+    <label class="container">inflammatory_nails
+    <input type="checkbox" name="inflammatory_nails" value="1">
+    <input type="hidden" name="inflammatory_nails" value="0">
+    </label>
+      
+    <label class="container">blister
+    <input type="checkbox" name="blister" value="1">
+    <input type="hidden" name="blister" value="0">
+    </label>
+      
+    <label class="container">red_sore_around_nose
+    <input type="checkbox" name="red_sore_around_nose" value="1">
+    <input type="hidden" name="red_sore_around_nose" value="0">
+    </label>
+      
+    <label class="container">yellow_crust_ooze
+    <input type="checkbox" name="yellow_crust_ooze" value="1">
+    <input type="hidden" name="yellow_crust_ooze" value="0">
+    </label>
+
+    <br>
+    <br>
+    <br>
+    <button type="submit" class="btn-primary btn-block btn-large">PREDICT</button>
+  </form>
+  </div>
+
+  
+  <br>
+  <br>
+  {{ prediction_text }}
+
+  
+  
+  <footer><p>Wells & Neils,copyright &copy</p></footer>
 
 
 </body>
